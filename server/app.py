@@ -105,10 +105,7 @@ class MemberOnlyArticle(Resource):
         if not session.get('user_id'):
             return {'message': 'Unauthorized'}, 401
 
-        article = Article.query.filter(
-            Article.id == id,
-            Article.is_member_only == True
-        ).first()
+        article = Article.query.filter(Article.id == id).first()
 
         if not article:
             return {'message': 'Article not found'}, 404
